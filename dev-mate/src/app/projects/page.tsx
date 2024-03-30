@@ -32,24 +32,32 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </CardContent>
       <CardFooter>
-        <Button asChild>
-          <Link href={`/projects/${project.id}`}>View Project</Link>
-        </Button>
+        <div className=" flex gap-2">
+          <Button asChild>
+            <Link href={`/projects/${project.id}`}>View Project</Link>
+          </Button>
+
+          <Button variant={"outline"} asChild>
+            <Link href={`/projects/${project.id}`}>Accept</Link>
+          </Button>
+
+          <Button variant={"ghost"} asChild>
+            <Link href={`/projects/${project.id}`}>Reject</Link>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
 }
 
-export default async function Home() {
+export default async function page() {
   const projects = await db.query.project.findMany();
 
   return (
     <main className="min-h-screen p-16">
       <div className="flex justify-between item-center mb-10">
-        <h1 className="text-4xl">Find Dev Room</h1>
-        <Button asChild>
-          <Link href="/create-project">Create Project </Link>
-        </Button>
+        <h1 className="text-4xl">Find Projects</h1>
+        <span>Credit : 1/3</span>
       </div>
       <div className="grid grid-cols-3 gap-4">
         {projects.map((project) => {
