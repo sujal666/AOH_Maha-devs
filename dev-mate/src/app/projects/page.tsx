@@ -11,8 +11,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { GithubIcon } from "lucide-react";
+import { acceptProjectAction } from "./action";
+import AcceptButton from "./acceptBtn";
+// import { useRouter } from "next/navigation";
 
 function ProjectCard({ project }: { project: Project }) {
+  // const router = useRouter();
+
+  const handleAccept = async () => {
+    // Call acceptProjectAction with projectId
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -37,9 +46,7 @@ function ProjectCard({ project }: { project: Project }) {
             <Link href={`/projects/${project.id}`}>View Project</Link>
           </Button>
 
-          <Button variant={"outline"} asChild>
-            <Link href={`/projects/${project.id}`}>Accept</Link>
-          </Button>
+          <AcceptButton projectId={project.id} />
 
           <Button variant={"ghost"} asChild>
             <Link href={`/projects/${project.id}`}>Reject</Link>
