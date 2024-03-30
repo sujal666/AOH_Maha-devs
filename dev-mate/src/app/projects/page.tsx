@@ -43,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
       <CardFooter>
         <div className=" flex gap-2">
           <Button asChild>
-            <Link href={`/projects/${project.id}`}>View Project</Link>
+            <Link href={`/projects-detail/${project.id}`}>View Project</Link>
           </Button>
 
           <AcceptButton projectId={project.id} />

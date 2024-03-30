@@ -3,8 +3,13 @@ import { db } from "@/db";
 import { ProjectWorking, projectWorking } from "@/db/schema";
 import React, { useEffect, useState } from "react";
 import { addToDB } from "./action";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { GithubIcon } from "lucide-react";
 
-function Card({ projects }: any) {
+
+function Cards({ projects }: any) {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [existProjectIds, setExistProjectIds] = useState([]);
 
@@ -33,11 +38,38 @@ function Card({ projects }: any) {
     <div>
       {filteredProjects.map((project: any) => (
         <div key={project.id}>
-          <h1>{project.name}</h1>
+           <Card key={project.id}>
+          <CardHeader>
+            <CardTitle>{project.name}</CardTitle>
+            <CardDescription>{project.description}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {project.githubRepo && (
+              <Link
+                href={project.githubRepo}
+                className="flex items-center gap-2"
+                target="blank"
+
+              >
+                <GithubIcon /> Github Project
+              </Link>
+            )}
+          </CardContent>
+          <CardFooter>
+            <div className="flex gap-2">
+              <Button>
+                <Link href={`/projects-detail/${project.id}`}>View Project</Link>
+              </Button>
+              <Button>
+                <Link href={`/projects/${project.id}`}>Reject</Link>
+              </Button>
+            </div>
+          </CardFooter>
+        </Card>
         </div>
       ))}
     </div>
   );
 }
 
-export default Card;
+export default Cards;
