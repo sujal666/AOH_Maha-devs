@@ -5,6 +5,7 @@ import {
   primaryKey,
   integer,
   uuid,
+  boolean,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 import { sql } from "drizzle-orm";
@@ -20,6 +21,7 @@ export const users = pgTable("user", {
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+  member: boolean("member").default(false),
 });
 
 export const accounts = pgTable(
@@ -81,6 +83,21 @@ export const project = pgTable("project", {
   longDes: text("longDes"),
 });
 
+export const hiring = pgTable("hiring", {
+  id: uuid("id")
+    .default(sql`gen_random_uuid()`)
+    .notNull()
+    .primaryKey(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  description: text("description"),
+  language: text("language").notNull(),
+  githubRepo: text("githubRepo"),
+  longDes: text("longDes"),
+});
+
 export const room = pgTable("room", {
   id: uuid("id")
     .default(sql`gen_random_uuid()`)
@@ -98,5 +115,18 @@ export const room = pgTable("room", {
     .references(() => project.id),
 });
 
+export const projectWorking = pgTable("project_working", {
+  id: uuid("id")
+    .default(sql`gen_random_uuid()`)
+    .notNull()
+    .primaryKey(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  projects: text("projects").array(),
+  previousProjects: text("previousProjects").array(),
+});
+
 export type Room = typeof room.$inferSelect;
 export type Project = typeof project.$inferSelect;
+export type ProjectWorking = typeof projectWorking.$inferSelect;
