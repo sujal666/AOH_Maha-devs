@@ -19,7 +19,7 @@ function ProjectCard({ project }: { project: Project }) {
       <CardHeader className="">
         <CardTitle>{project.name}
         </CardTitle>
-        <Badge variant="secondary" className="ml-2 w-fit">Google</Badge>
+        <Badge variant="secondary" className="w-fit">Google</Badge>
 
         <CardDescription>{project.description}</CardDescription>
       </CardHeader>
@@ -38,7 +38,7 @@ function ProjectCard({ project }: { project: Project }) {
       <CardFooter>
         <div className=" flex gap-2">
           <Button asChild>
-            <Link href={`/projects/${project.id}`}>View Project</Link>
+            <Link href={`/projects-detail/${project.id}`}>View Project</Link>
           </Button>
 
           <Button variant={"outline"} asChild>
