@@ -25,7 +25,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogIn, LogOut } from "lucide-react";
+import { LogIn, LogOut, User } from "lucide-react";
 import Link from "next/link";
 
 function AccountDropdown() {
@@ -45,18 +45,23 @@ function AccountDropdown() {
         <DropdownMenuSeparator /> */}
 
         {isLogged ? (
-          <DropdownMenuItem>
-            <Button onClick={() => signOut()} variant={"outline"}>
-              <LogIn className="mr-2" /> Sign Out
-            </Button>
-          </DropdownMenuItem>
+          <>
+            <DropdownMenuItem>
+              <Button onClick={() => signOut()} variant={"outline"}>
+                <LogIn className="mr-2" /> Sign Out
+              </Button>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button variant={"outline"} className="w-full">
+                {" "}
+                <User className="mr-2" />
+                Profile
+              </Button>
+            </DropdownMenuItem>
+          </>
         ) : (
           ""
         )}
-
-        <DropdownMenuItem>
-          <Link href="/profile">Profile</Link>
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
