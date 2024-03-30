@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { acceptProjectAction } from "./action";
+import { getSession, useSession } from "next-auth/react";
 
 function AcceptButton({ projectId }: { projectId: string }) {
   const router = useRouter();
@@ -19,6 +20,33 @@ function AcceptButton({ projectId }: { projectId: string }) {
 
     // Console log the updated array
     console.log("Updated Project IDs:", existingProjectIds);
+    const session = await getSession();
+    const userId = session?.user?.id;
+
+    if (userId) {
+      const url = "/api/accept-project";
+      const data = { userId, projects: existingProjectIds };
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          console.log("ProjectWorking table updated successfully");
+        } else {
+          console.error("Failed to update ProjectWorking table");
+        }
+      } catch (error) {
+        console.error("Error updating ProjectWorking table:", error);
+      }
+    } else {
+      console.error("User ID not found in session");
+    }
 
     router.push("/dashboard");
   }
