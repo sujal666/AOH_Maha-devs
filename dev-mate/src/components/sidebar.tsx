@@ -1,4 +1,5 @@
-import { LayoutDashboard } from "lucide-react";
+import { BarChartBig, CircleUserRound, FileCode, IndianRupee, LayoutDashboard, Presentation } from "lucide-react";
+
 import React from "react";
 
 function SideBar() {
@@ -11,27 +12,27 @@ function SideBar() {
         </h6>
 
         <h6 className=" flex gap-2 items-center  ">
-          <LayoutDashboard />
+          <FileCode  />
           Projects
         </h6>
 
         <h6 className=" flex gap-2 items-center  ">
-          <LayoutDashboard />
+        <Presentation />
           Hiring
         </h6>
 
         <h6 className=" flex gap-2 items-center  ">
-          <LayoutDashboard />
+        <BarChartBig />
           Leaderboard
         </h6>
 
         <h6 className=" flex gap-2 items-center  ">
-          <LayoutDashboard />
+        <IndianRupee />
           Pricing
         </h6>
 
         <h6 className=" flex gap-2 items-center  ">
-          <LayoutDashboard />
+        <CircleUserRound />
           Accounts
         </h6>
       </div>
