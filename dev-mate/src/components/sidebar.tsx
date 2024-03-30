@@ -27,7 +27,7 @@ function SideBar() {
           Leaderboard
         </h6></Link>
 
-      <Link href="/pricing">  <h6 className=" flex gap-2 items-center  ">
+      <Link href="/pricings">  <h6 className=" flex gap-2 items-center  ">
         <IndianRupee />
           Pricing
         </h6></Link>
