@@ -1,54 +1,75 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-function Page() {
+import { db } from "@/db";
+
+async function Page({
+  params: { projectid },
+}: {
+  params: { projectid: string };
+}) {
+  const rooms = await db.query.room.findMany();
   return (
     <div>
       <div className="grid grid-cols-4 gap-4 min-h-screen p-5">
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4 col-span-3">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Description</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              Description
+            </h1>
           </div>
 
           <div>
             <div className="flex justify-between px-10 py-5">
               <h1 className="text-2xl font-semibold tracking-tight">Issues</h1>
-              <Button>New Issue</Button>
+              <Button>
+                <Link href={`/create-room/${projectid}`}>New Room</Link>
+              </Button>
             </div>
             <table className="min-w-full divide-y border bg-card text-card-foreground rounded-lg">
               <thead className="rounded-lg border bg-card text-card-foreground">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
-                    Issue
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider"
+                  >
+                    Rooms
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider"
+                  >
                     Description
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider">
-
-                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-white-500 uppercase tracking-wider"
+                  ></th>
                 </tr>
               </thead>
               <tbody className="rounded-lg border bg-card text-card-foreground divide-y divide-gray-600">
-                <tr>
-                  <td className="px-6 py-4 ">
-                    <div className="text-sm font-medium text-white-900">HTTP2 server crashes every time.</div>
-                  </td>
-                  <td className="px-6 py-4 ">
-                    <div className="text-sm text-gray-400">I am trying to write an insecure HTTP2 web server. However it crashes on any inputs.</div>
-                  </td>
-                  <td className="px-9 py-4 ">
-                    <Button>Join Room</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 ">
-                    <div className="text-sm font-medium text-white-900">HTTP2 server crashes every time.</div>
-                  </td>
-                  <td className="px-6 py-4 ">
-                    <div className="text-sm text-gray-400">I am trying to write an insecure HTTP2 web server. However it crashes on any inputs.</div>
-                  </td>
-                </tr>
+                {rooms
+                  .filter((room) => room.projectId === projectid)
+                  .map((room) => (
+                    <tr key={room.id}>
+                      <td className="px-6 py-4 ">
+                        <div className="text-sm font-medium text-white-900">
+                          {room.name}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 ">
+                        <div className="text-sm text-gray-400">
+                          {room.description}
+                        </div>
+                      </td>
+                      <td className="px-9 py-4 ">
+                        <Button>
+                          <Link href={`/rooms/${room.id}`}>Join Room</Link>
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

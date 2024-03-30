@@ -79,7 +79,6 @@ export const project = pgTable("project", {
   language: text("language").notNull(),
   githubRepo: text("githubRepo"),
   longDes: text("longDes"),
-  rooms: text("rooms").array(),
 });
 
 export const room = pgTable("room", {
@@ -94,6 +93,9 @@ export const room = pgTable("room", {
   description: text("description"),
   language: text("language").notNull(),
   githubRepo: text("githubRepo"),
+  projectId: uuid("projectId")
+    .notNull()
+    .references(() => project.id),
 });
 
 export type Room = typeof room.$inferSelect;

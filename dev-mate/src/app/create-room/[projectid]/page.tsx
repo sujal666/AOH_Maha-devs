@@ -1,7 +1,10 @@
 import { CreateRoomForm } from "@/components/create-room-form";
 import { getSession } from "@/lib/auth";
 
-export default async function CreateRoomPage() {
+export default async function CreateRoomPage(props: {
+  params: { projectid: string };
+}) {
+  const projectid = props.params.projectid;
   const session = await getSession();
 
   return (
@@ -15,7 +18,7 @@ export default async function CreateRoomPage() {
       ) : (
         <>
           <h1 className="text-4xl font-bold">Create Room</h1>
-          <CreateRoomForm />
+          <CreateRoomForm projectid={projectid} />
         </>
       )}
     </div>

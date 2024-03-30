@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createRoomAction } from "@/app/create-room/action";
+import { createRoomAction } from "@/app/create-room/[projectid]/action";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
@@ -22,9 +22,10 @@ const formSchema = z.object({
   description: z.string().min(1).max(250),
   githubRepo: z.string().min(1).max(50),
   language: z.string().min(1).max(50),
+  projectId: z.string().min(1),
 });
 
-export function CreateRoomForm() {
+export function CreateRoomForm({ projectid }: { projectid: string }) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -34,13 +35,14 @@ export function CreateRoomForm() {
       description: "",
       githubRepo: "",
       language: "",
+      projectId: projectid,
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // TODO: invoke a server action to store the data in our database
     await createRoomAction(values);
-    router.push("/");
+    router.push("/projects/" + projectid);
   }
 
   return (
