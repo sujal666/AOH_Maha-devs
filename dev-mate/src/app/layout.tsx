@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import Providers from "./providers";
 import Header from "@/components/header";
 import NextTopLoader from "nextjs-toploader";
+import SideBar from "@/components/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +26,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Header />
-<NextTopLoader  />
-          {children}
+          <NextTopLoader />
+          <div className=" flex">
+            {" "}
+            <div>
+              <SideBar />
+            </div>
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
