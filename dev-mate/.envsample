@@ -1,0 +1,13 @@
+
+DATABASE_URL="postgres://postgres.eonxjcafvsumacwweair:devmate123!@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres"
+
+GOOGLE_CLIENT_ID="1034610763531-htqu9t8mqm89c8ilr2q94n6f4hml6sg0.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
+
+GITHUB_CLIENT_ID="59879b135d21b735787b"
+GITHUB_CLIENT_SECRET="6846f7b1ad76a26b97d4c4730a34dc7bea05973c"
+
+NEXTAUTH_SECRET="SUP@ERMAN"
+
+NEXT_PUBLIC_GET_STREAM_API = "rzymysrmv7rm"
+GET_STREAM_SECRET_KEY="382yhgbp6k4saw9gdrp9kudga2qjagnzr754nt6hyuapng8qh899rwesbqt5u934"
