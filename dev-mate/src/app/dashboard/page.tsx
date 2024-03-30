@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { project } from "@/db/schema";
-import {  GithubIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 
 import { Button } from "react-day-picker";
 import AcceptButton from "../projects/acceptBtn";
@@ -19,9 +19,7 @@ const page = async () => {
   const projects = await db.query.project.findMany();
   return (
     <div>
-      Dashboard:
       <Cards projects={projects} />
-
     </div>
   );
 };
