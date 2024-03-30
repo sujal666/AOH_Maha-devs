@@ -29,10 +29,10 @@ export default function RootLayout({
           <NextTopLoader />
           <div className=" flex">
             {" "}
-            <div>
+            <div className=" sticky left-0">
               <SideBar />
             </div>
-            {children}
+            <div className="">{children}</div>
           </div>
         </Providers>
       </body>
