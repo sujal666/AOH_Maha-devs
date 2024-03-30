@@ -1,9 +1,15 @@
-import React from 'react'
+import { db } from "@/db";
+import React from "react";
+import Card from "./card";
 
-const page = () => {
+const page = async () => {
+  const projects = await db.query.project.findMany();
   return (
-    <div>Dashboard</div>
-  )
-}
+    <div>
+      Dashboard:
+      <Card projects={projects} />
+    </div>
+  );
+};
 
-export default page
+export default page;
