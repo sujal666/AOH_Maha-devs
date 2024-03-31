@@ -13,6 +13,7 @@ import {
 import { GithubIcon } from "lucide-react";
 import { acceptProjectAction } from "./action";
 import AcceptButton from "./acceptBtn";
+import RejectButton from "./rejectBtn";
 // import { useRouter } from "next/navigation";
 
 function ProjectCard({ project }: { project: Project }) {
@@ -48,9 +49,7 @@ function ProjectCard({ project }: { project: Project }) {
 
           <AcceptButton projectId={project.id} />
 
-          <Button variant={"ghost"} asChild>
-            <Link href={`/projects/${project.id}`}>Reject</Link>
-          </Button>
+          <RejectButton projectId={project.id} />
         </div>
       </CardFooter>
     </Card>
