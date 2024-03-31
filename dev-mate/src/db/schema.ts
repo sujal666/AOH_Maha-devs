@@ -121,6 +121,8 @@ export const projectWorking = pgTable("project_working", {
     .references(() => users.id, { onDelete: "cascade" }),
   projects: text("projects").array(),
   previousProjects: text("previousProjects").array(),
+  rejectProjects: text("rejectProjects").array(),
+
 });
 
 export type Room = typeof room.$inferSelect;
