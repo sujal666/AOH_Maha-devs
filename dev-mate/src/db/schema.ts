@@ -121,8 +121,12 @@ export const projectWorking = pgTable("project_working", {
     .references(() => users.id, { onDelete: "cascade" }),
   projects: text("projects").array(),
   previousProjects: text("previousProjects").array(),
+<<<<<<< Updated upstream
   rejectProjects: text("rejectProjects").array(),
 
+=======
+  notWorking: text("notWorking").array(),
+>>>>>>> Stashed changes
 });
 
 export type Room = typeof room.$inferSelect;
