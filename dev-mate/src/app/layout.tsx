@@ -28,13 +28,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Header />
-          <NextTopLoader />
-          <div className=" flex">
-            {" "}
-            <div className=" sticky left-0">
+          <NextTopLoader />{" "}
+          <div className=" grid grid-cols-12">
+            <div className="col-span-2">
+              {" "}
               <SideBar />
             </div>
-            <div className="">{children}</div>
+            <div className="col-span-10"> {children}</div>
           </div>
           <Footer/>
         </Providers>

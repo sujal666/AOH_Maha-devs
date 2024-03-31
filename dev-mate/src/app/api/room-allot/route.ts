@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
     // Create a new room and allot the user
     await db.insert(room).values({
       projectId,
-      name: "New Room",
-      description: "New Room for project",
+      name: `Room ${projectId}`,
+      description: "Connect with team and start building projects",
       usersAlloted: [userId],
     });
   }
