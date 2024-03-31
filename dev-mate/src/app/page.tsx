@@ -1,4 +1,5 @@
 "use client";
+
 import React from 'react'
 import './page.css'
 
@@ -104,4 +105,4 @@ export const products = [
   },
 ];
 
-export default HeroParallaxDemo;
+export default HeroParallaxDemo

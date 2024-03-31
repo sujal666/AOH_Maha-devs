@@ -26,6 +26,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogIn, LogOut } from "lucide-react";
+import Link from "next/link";
 
 function AccountDropdown() {
   const session = useSession();
@@ -75,7 +76,7 @@ function Header() {
     <div className="bg-gray-100 dark:bg-gray-900 flex justify-between w-full px-14 items-center py-4">
       <div>
         <h3 className="scroll-m-20 text-3xl font-semibold tracking-tight">
-          Dev Mate
+         <Link href={'/'}> Dev Mate</Link>
         </h3>
       </div>
       <div className="flex">
