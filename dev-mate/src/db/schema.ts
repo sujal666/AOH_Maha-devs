@@ -120,6 +120,7 @@ export const projectWorking = pgTable("project_working", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   projects: text("projects").array(),
+  rejectedProjects: text("rejectedProjects").array(),
   previousProjects: text("previousProjects").array(),
 });
 
