@@ -13,6 +13,7 @@ import {
 import { GithubIcon } from "lucide-react";
 import { acceptProjectAction } from "./action";
 import AcceptButton from "./acceptBtn";
+import RejectButton from "./rejectBtn";
 // import { useRouter } from "next/navigation";
 
 function ProjectCard({ project }: { project: Project }) {
@@ -43,14 +44,12 @@ function ProjectCard({ project }: { project: Project }) {
       <CardFooter>
         <div className=" flex gap-2">
           <Button asChild>
-            <Link href={`/projects-detail/${project.id}`}>View Project</Link>
+            <Link href={`/projects/${project.id}`}>View Project</Link>
           </Button>
 
           <AcceptButton projectId={project.id} />
 
-          <Button variant={"ghost"} asChild>
-            <Link href={`/projects/${project.id}`}>Reject</Link>
-          </Button>
+          <RejectButton projectId={project.id} />
         </div>
       </CardFooter>
     </Card>

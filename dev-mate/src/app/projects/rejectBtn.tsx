@@ -1,31 +1,37 @@
-"use client";
+"use client"
 import { useRouter } from "next/navigation";
-import { acceptProjectAction } from "./action";
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import { useState } from "react";
 
-function AcceptButton({ projectId }: { projectId: string }) {
+function RejectButton({ projectId }: { projectId: string }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   async function handleClick() {
+    setLoading(true);
+
     // Retrieve the existing array of project IDs from local storage
     const existingProjectIds = JSON.parse(
       localStorage.getItem("projectIds") || "[]"
     );
 
-    // Add the new projectId to the array
-    existingProjectIds.push(projectId);
+    // Remove the rejected projectId from the array
+    const updatedProjectIds = existingProjectIds.filter(
+      (id: string) => id !== projectId
+    );
 
     // Store the updated array back into local storage
-    localStorage.setItem("projectIds", JSON.stringify(existingProjectIds));
+    localStorage.setItem("projectIds", JSON.stringify(updatedProjectIds));
 
     // Console log the updated array
-    console.log("Updated Project IDs:", existingProjectIds);
+    console.log("Updated Project IDs:", updatedProjectIds);
+
     const session = await getSession();
     const userId = session?.user?.id;
 
     if (userId) {
-      const url = "/api/accept-project";
-      const data = { userId, projects: existingProjectIds };
+      const url = "/api/reject-project";
+      const data = { userId, projectId };
 
       try {
         const response = await fetch(url, {
@@ -48,10 +54,15 @@ function AcceptButton({ projectId }: { projectId: string }) {
       console.error("User ID not found in session");
     }
 
+    setLoading(false);
     router.push("/dashboard");
   }
 
-  return <button onClick={handleClick}>Accept</button>;
+  return (
+    <button onClick={handleClick} disabled={loading}>
+      {loading ? "Rejecting..." : "Reject"}
+    </button>
+  );
 }
 
-export default AcceptButton;
+export default RejectButton;

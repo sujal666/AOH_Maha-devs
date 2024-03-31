@@ -103,16 +103,12 @@ export const room = pgTable("room", {
     .default(sql`gen_random_uuid()`)
     .notNull()
     .primaryKey(),
-  userId: text("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   description: text("description"),
-  language: text("language").notNull(),
-  githubRepo: text("githubRepo"),
   projectId: uuid("projectId")
     .notNull()
     .references(() => project.id),
+  usersAlloted: text("usersAlloted").array().notNull(),
 });
 
 export const projectWorking = pgTable("project_working", {
@@ -124,12 +120,10 @@ export const projectWorking = pgTable("project_working", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   projects: text("projects").array(),
+  rejectedProjects: text("rejectedProjects").array(),
   previousProjects: text("previousProjects").array(),
 });
 
 export type Room = typeof room.$inferSelect;
 export type Project = typeof project.$inferSelect;
 export type ProjectWorking = typeof projectWorking.$inferSelect;
-
-
-

@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { userId, projects, previousProjects } = body;
+  const { userId, notWorking } = body;
 
   // Check if a record already exists for the user
   const existingRecord = await db
@@ -18,20 +18,16 @@ export async function POST(request: NextRequest) {
     await db
       .update(projectWorking)
       .set({
-        projects,
-        previousProjects,
+        notWorking,
       })
       .where(eq(projectWorking.userId, userId));
   } else {
     // Insert a new record
     await db.insert(projectWorking).values({
       userId,
-      projects,
-      previousProjects,
+      notWorking,
     });
   }
-
-  //
 
   return NextResponse.json({ existingRecord });
 }
