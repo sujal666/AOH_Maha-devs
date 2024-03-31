@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-function PageComponent({ project, roomEmpty, rooms }: any) {
+function PageComponent({ project, roomEmpty, rooms, user }: any) {
   return (
     <div className="bg-white h-screen">
       <div className="mx-auto grid max-w-2xl grid-cols-1  gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
@@ -10,11 +10,7 @@ function PageComponent({ project, roomEmpty, rooms }: any) {
             {project?.name}
           </h2>
           <p className="mt-4 text-gray-500">{project?.description}</p>
-          {rooms.map((room: any) => (
-            <p key={room.id} className="mt-4 text-gray-500">
-              {room.name}
-            </p>
-          ))}
+          {rooms.name}
           {/* <dl className="">
             {features.map((feature) => (
               <div key={feature.name} className="border-t border-gray-200 pt-4">
