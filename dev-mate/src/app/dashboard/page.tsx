@@ -19,6 +19,7 @@ const page = async () => {
   const projects = await db.query.project.findMany();
   return (
     <div>
+      <h1 className="text-4xl p-10">Your Projects</h1>
       <Cards projects={projects} />
     </div>
   );
