@@ -8,83 +8,79 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
 const invoices = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    rank: 1,
+    name: "John Doe",
+    totalPoints: 250,
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
+    rank: 2,
+    name: "Jane Smith",
+    totalPoints: 150,
   },
   {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
+    rank: 3,
+    name: "Alice Johnson",
+    totalPoints: 350,
   },
   {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
+    rank: 4,
+    name: "Bob Brown",
+    totalPoints: 450,
   },
   {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
+    rank: 5,
+    name: "Eva Lee",
+    totalPoints: 550,
   },
   {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
+    rank: 6,
+    name: "Mike Wilson",
+    totalPoints: 200,
   },
   {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
+    rank: 7,
+    name: "Emily Davis",
+    totalPoints: 300,
   },
-]
+  {
+    rank: 8,
+    name: "Chris Thompson",
+    totalPoints: 400,
+  },
+];
 
 export function TableDemo() {
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+    <div style={{ margin: '40px 300px' }}>
+      <Table style={{ width: '500px' }}>
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Rank</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Total Points</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
-  )
+        </TableHeader>
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.rank}>
+              <TableCell className="font-medium">{invoice.rank}</TableCell>
+              <TableCell>{invoice.name}</TableCell>
+              <TableCell>{invoice.totalPoints}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        {/* You can keep the TableFooter or remove it as needed */}
+        <TableFooter>
+          {/* You can add totals or any additional information here */}
+        </TableFooter>
+      </Table>
+    </div>
+  );
 }
 
 export default TableDemo;
