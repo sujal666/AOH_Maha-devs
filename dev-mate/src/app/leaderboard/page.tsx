@@ -1,47 +1,90 @@
-export default function Leaderboard (){
+"use client"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+const invoices = [
+  {
+    invoice: "INV001",
+    paymentStatus: "Paid",
+    totalAmount: "$250.00",
+    paymentMethod: "Credit Card",
+  },
+  {
+    invoice: "INV002",
+    paymentStatus: "Pending",
+    totalAmount: "$150.00",
+    paymentMethod: "PayPal",
+  },
+  {
+    invoice: "INV003",
+    paymentStatus: "Unpaid",
+    totalAmount: "$350.00",
+    paymentMethod: "Bank Transfer",
+  },
+  {
+    invoice: "INV004",
+    paymentStatus: "Paid",
+    totalAmount: "$450.00",
+    paymentMethod: "Credit Card",
+  },
+  {
+    invoice: "INV005",
+    paymentStatus: "Paid",
+    totalAmount: "$550.00",
+    paymentMethod: "PayPal",
+  },
+  {
+    invoice: "INV006",
+    paymentStatus: "Pending",
+    totalAmount: "$200.00",
+    paymentMethod: "Bank Transfer",
+  },
+  {
+    invoice: "INV007",
+    paymentStatus: "Unpaid",
+    totalAmount: "$300.00",
+    paymentMethod: "Credit Card",
+  },
+]
+
+export function TableDemo() {
   return (
-    <div>
-      {/*
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-*/}
-
-<div className="overflow-x-auto rounded-lg border border-gray-200">
-  <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-    <thead className="ltr:text-left rtl:text-right">
-      <tr>
-        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
-        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date of Birth</th>
-        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Role</th>
-        <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Salary</th>
-      </tr>
-    </thead>
-
-    <tbody className="divide-y divide-gray-200">
-      <tr>
-        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">John Doe</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">Web Developer</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">$120,000</td>
-      </tr>
-
-      <tr>
-        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Jane Doe</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">04/11/1980</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">Web Designer</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">$100,000</td>
-      </tr>
-
-      <tr>
-        <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-        <td className="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-    </div>
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {invoices.map((invoice) => (
+          <TableRow key={invoice.invoice}>
+            <TableCell className="font-medium">{invoice.invoice}</TableCell>
+            <TableCell>{invoice.paymentStatus}</TableCell>
+            <TableCell>{invoice.paymentMethod}</TableCell>
+            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell className="text-right">$2,500.00</TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
   )
 }
+
+export default TableDemo;
