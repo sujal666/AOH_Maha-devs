@@ -122,12 +122,6 @@ export const projectWorking = pgTable("project_working", {
   projects: text("projects").array(),
   rejectedProjects: text("rejectedProjects").array(),
   previousProjects: text("previousProjects").array(),
-<<<<<<< Updated upstream
-  rejectProjects: text("rejectProjects").array(),
-
-=======
-  notWorking: text("notWorking").array(),
->>>>>>> Stashed changes
 });
 
 export type Room = typeof room.$inferSelect;
