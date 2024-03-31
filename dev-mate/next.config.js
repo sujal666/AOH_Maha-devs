@@ -3,3 +3,8 @@ module.exports = {
       domains: ['pbs.twimg.com'],
     },
   };
+  module.exports = {
+    images: {
+      domains: ['aceternity.com'],
+    },
+  }
