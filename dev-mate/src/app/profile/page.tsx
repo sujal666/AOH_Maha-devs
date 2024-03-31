@@ -14,7 +14,7 @@ function Profile() {
     return (
         <div className="p-8">
             <div className="my-2">
-                <Avatar className="my-5"> <AvatarImage src={session.data?.user?.image ?? ''} /></Avatar>
+                <Avatar className="my-5 " > <AvatarImage src={session.data?.user?.image ?? ''} /></Avatar>
                 {session.data?.user?.name}
                 <p className="text-gray-400">Heyy, I'm a freelance Website Developer</p>
             </div>
