@@ -8,6 +8,7 @@ import Providers from "./providers";
 import Header from "@/components/header";
 import NextTopLoader from "nextjs-toploader";
 import SideBar from "@/components/sidebar";
+import { Footer } from "react-day-picker";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             </div>
             <div className="col-span-10"> {children}</div>
           </div>
+            {/* <Footer/> */}
         </Providers>
       </body>
     </html>
